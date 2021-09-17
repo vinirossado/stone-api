@@ -1,6 +1,18 @@
 version: "3.3"
 services:
-  stone:
-    build: .
-    ports:
-      - "8080:8080"
+  # stone go api
+  # stone:
+  #   environment:
+        # SQLSERVER_CONNECTION: "Server=tcp:sqlserver,1433;Data Source=sqlserver;Initial Catalog=stone;Persist Security Info=False;User ID=sa;Password=stone-api@123;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;"
+  #   build: .
+  #   ports:
+  #     - "8080:8080"
+  # SQL Server Database
+  sqlserver: 
+    image: mcr.microsoft.com/mssql/server:2017-latest
+    environment: 
+      ACCEPT_EULA: Y
+      SA_PASSWORD: stone-api@123
+    ports: 
+      - "1433:1433"
+ 

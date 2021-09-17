@@ -1,21 +1,20 @@
 package main
 
 import (
-	"log"
 	"net/http"
+	"os"
 
 	"github.com/gin-gonic/gin"
-	"github.com/joho/godotenv"
 )
-
-func init() {
-	if err := godotenv.Load(); err != nil {
-		log.Println("no env gotten")
-	}
-}
 
 func main() {
 	r := gin.New()
+	connection := os.Getenv("SQLSERVER_CONNECTION")
+
+	if connection == "" {
+		//TODO: Implementar a lib de Log
+		os.Exit(1)
+	}
 
 	http.ListenAndServe(":8080", r)
 }
