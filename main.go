@@ -26,21 +26,20 @@ func main() {
 	{
 		accounts := v1.Group("/accounts/")
 		{
-			accounts.GET(":account_id/balance", c.GetSchool)
-			accounts.GET("", c.GetSchools)
-			accounts.POST("", c.GetSchools)
+			accounts.GET(":account_id/balance", c.GetBalance)
+			accounts.GET("", c.GetAccount)
+			accounts.POST("", c.NewAccount)
 		}
 
 		login := v1.Group("/login/")
 		{
-			login.GET(":id", c.GetCity)
-			login.GET("", c.GetCities)
+			login.POST("", c.Login)
 		}
 
 		transfers := v1.Group("/transfers/")
 		{
-			transfers.GET("", c.GetCountries)
-			transfers.POST("", c.GetCountries)
+			transfers.GET("", c.GetTransfersByUser)
+			transfers.POST("", c.Transfer)
 		}
 	}
 
