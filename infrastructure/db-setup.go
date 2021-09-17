@@ -5,6 +5,7 @@ import (
 
 	"gorm.io/driver/sqlserver"
 	"gorm.io/gorm"
+	"stone.com/api/models"
 )
 
 var DB *gorm.DB
@@ -26,6 +27,12 @@ func ConnectDatabase() {
 	if err != nil {
 		panic("Failed to open database")
 	}
+
+	db.AutoMigrate(
+		&models.Account{},
+		&models.Login{},
+		&models.Transfer{},
+	)
 
 	DB = db
 }
