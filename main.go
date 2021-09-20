@@ -18,16 +18,15 @@ func main() {
 		os.Exit(1)
 	}
 
-	c := controllers.NewController()
-
 	infrastructure.ConnectDatabase()
+	c := controllers.NewController()
 
 	v1 := r.Group("/api/v1")
 	{
 		accounts := v1.Group("/accounts/")
 		{
 			accounts.GET(":account_id/balance", c.GetBalance)
-			accounts.GET("", c.GetAccount)
+			accounts.GET("", c.GetAccounts)
 			accounts.POST("", c.NewAccount)
 		}
 

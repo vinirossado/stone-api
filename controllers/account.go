@@ -4,7 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func (c *Controller) GetAccount(ctx *gin.Context) {
+func (c *Controller) GetAccounts(ctx *gin.Context) {
 
 }
 

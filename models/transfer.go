@@ -7,5 +7,5 @@ type Transfer struct {
 	Account_Origin_ID      int
 	Account_Destination_ID int
 	Amount                 float64
-	Created_At             time.Time `gorm:"->;<-:create" "autoCreateTime"`
+	Created_At             time.Time `gorm:"->;<-:create"`
 }

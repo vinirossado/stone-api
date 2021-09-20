@@ -14,7 +14,7 @@ var (
 	server   = "localhost"
 	user     = "sa"
 	password = "stone-api@123"
-	database = "master"
+	database = "stone"
 )
 
 func ConnectDatabase() {
