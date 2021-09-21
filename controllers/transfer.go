@@ -1,11 +1,9 @@
 package controllers
 
-import "github.com/gin-gonic/gin"
+// func (c *Transfer) GetTransfersByUser(*gin.Context) {
 
-func (c *Controller) GetTransfersByUser(*gin.Context) {
+// }
 
-}
+// func (c *Transfer) Transfer(*gin.Context) {
 
-func (c *Controller) Transfer(*gin.Context) {
-
-}
+// }

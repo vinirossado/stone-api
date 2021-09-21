@@ -17,7 +17,7 @@ var (
 	database = "stone"
 )
 
-func ConnectDatabase() {
+func ConnectDatabase() *gorm.DB {
 
 	connectionString := fmt.Sprintf("server=%s;user id=%s;password=%s;database=%s",
 		server, user, password, database)
@@ -35,4 +35,5 @@ func ConnectDatabase() {
 	)
 
 	DB = db
+	return DB
 }

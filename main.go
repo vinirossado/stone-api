@@ -7,6 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"stone.com/api/controllers"
 	"stone.com/api/infrastructure"
+	"stone.com/api/repository"
 )
 
 func main() {
@@ -18,29 +19,19 @@ func main() {
 		os.Exit(1)
 	}
 
-	infrastructure.ConnectDatabase()
-	c := controllers.NewController()
+	db := infrastructure.ConnectDatabase()
 
-	v1 := r.Group("/api/v1")
-	{
-		accounts := v1.Group("/accounts/")
-		{
-			accounts.GET(":account_id/balance", c.GetBalance)
-			accounts.GET("", c.GetAccounts)
-			accounts.POST("", c.NewAccount)
-		}
+	account := controllers.NewAccount(repository.NewAccountRepository(db))
 
-		login := v1.Group("/login/")
-		{
-			login.POST("", c.Login)
-		}
+	// r.GET("accounts/:account_id/balance", account.GetBalance)
+	r.GET("accounts", account.GetAccounts)
+	r.GET(":account_id/balance", account.GetBalance)
+	r.POST("", account.NewAccount)
 
-		transfers := v1.Group("/transfers/")
-		{
-			transfers.GET("", c.GetTransfersByUser)
-			transfers.POST("", c.Transfer)
-		}
-	}
+	// r.POST("", c.Login)
+
+	// r.GET("", c.GetTransfersByUser)
+	// r.POST("", c.Transfer)
 
 	http.ListenAndServe(":8080", r)
 }

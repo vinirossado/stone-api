@@ -1,9 +1,5 @@
 package controllers
 
-import (
-	"github.com/gin-gonic/gin"
-)
+// func (c *Login) Login(ctx *gin.Context) {
 
-func (c *Controller) Login(ctx *gin.Context) {
-
-}
+// }
