@@ -23,9 +23,8 @@ func main() {
 
 	account := controllers.NewAccount(repository.NewAccountRepository(db))
 
-	// r.GET("accounts/:account_id/balance", account.GetBalance)
 	r.GET("accounts", account.GetAccounts)
-	r.GET(":account_id/balance", account.GetBalance)
+	r.GET("accounts/:account_id/balance", account.GetBalance)
 	r.POST("", account.NewAccount)
 
 	// r.POST("", c.Login)

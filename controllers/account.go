@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"net/http"
+	"strconv"
 
 	"github.com/gin-gonic/gin"
 	"stone.com/api/application"
@@ -33,7 +34,28 @@ func (a *Account) GetAccounts(ctx *gin.Context) {
 	})
 }
 
-func (c *Account) GetBalance(ctx *gin.Context) {
+func (a *Account) GetBalance(ctx *gin.Context) {
+	accountId, err := strconv.ParseUint(ctx.Param("account_id"), 10, 64)
+
+	if err != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{
+			"data": err.Error(),
+		})
+		return
+
+	}
+	account, err := a.ap.GetBalance((accountId))
+
+	if err != nil {
+		ctx.JSON(http.StatusInternalServerError, gin.H{
+			"data": err.Error(),
+		})
+		return
+	}
+	ctx.JSON(http.StatusOK, gin.H{
+		"code": http.StatusOK,
+		"data": account,
+	})
 
 }
 
